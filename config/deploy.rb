@@ -73,6 +73,15 @@ namespace :deploy do
     end
   end
 
+before 'deploy:assets:precompile', :symlink_config_files
+  desc "Link shared files"
+	task :symlink_config_files do
+	  symlinks = {
+	    "#{shared_path}/local_env.yml" => "#{release_path}/config/local_env.yml"
+	  }
+	  run symlinks.map{|from, to| "ln -nfs #{from} #{to}"}.join(" && ")
+	end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
