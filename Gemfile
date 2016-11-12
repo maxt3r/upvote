@@ -25,7 +25,6 @@ gem 'refills'
 gem 'bitters'
 gem 'neat'
 gem 'gravatar_image_tag'
-gem 'pg'
 
 gem 'devise',                             github: 'plataformatec/devise'
 gem 'friendly_id',                        github: 'norman/friendly_id'
@@ -59,5 +58,6 @@ group :development do
 end
 
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
 end
